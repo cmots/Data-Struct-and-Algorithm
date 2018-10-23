@@ -1,2 +1,5 @@
 ﻿  Binary Search Tree.cpp
-  Binary Search Tree.vcxproj -> C:\Users\10611\Documents\代码\Data-Struct-and-Algorithm\Binary Search Tree\Debug\Binary Search Tree.exe
+e:\代码\data-struct-and-algorithm\tree\binary search tree\binary search tree\binary search tree.cpp(109): warning C4715: “Find”: 不是所有的控件路径都返回值
+e:\代码\data-struct-and-algorithm\tree\binary search tree\binary search tree\binary search tree.cpp(195): warning C4715: “_DeleteNode”: 不是所有的控件路径都返回值
+e:\代码\data-struct-and-algorithm\tree\binary search tree\binary search tree\binary search tree.cpp(174): warning C4715: “DeleteNode”: 不是所有的控件路径都返回值
+  Binary Search Tree.vcxproj -> E:\代码\Data-Struct-and-Algorithm\Tree\Binary Search Tree\Debug\Binary Search Tree.exe
