@@ -51,7 +51,7 @@ void MergeSort(int* arr, int left, int right) {
 	MergeSort(arr, left, mid);
 	MergeSort(arr, mid + 1, right);
 
-	int* temp = new int(right - left + 1);
+	int* temp = new int[right - left + 1];
 
 	int i = left, j = mid + 1;
 	int n = 0;
@@ -67,7 +67,7 @@ void MergeSort(int* arr, int left, int right) {
 		temp[n++] = arr[j++];
 	for (int i = 0; i < n; i++)
 		arr[i + left] = temp[i];
-	delete temp;
+	delete[] temp;
 }
 
 
