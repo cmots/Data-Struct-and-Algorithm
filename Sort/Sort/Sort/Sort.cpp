@@ -3,9 +3,11 @@
 
 #include "pch.h"
 
-#include <cstdlib>
+#include <stdlib.h>
 #include <iostream>
 
+void BubbleSort(int *, int size);
+void InsertSort(int*, int size);
 void QuickSort(int*, int left, int right);	//这里采用比较基本的方法，但是入口要一直传递大数组
 void MergeSort(int*, int left, int right);
 void Swap(int &, int &);
@@ -13,25 +15,50 @@ void Swap(int &, int &);
 int main()
 {
 	int arr[10] = { 3,1,6,4,5,9,5,10,7,2};
+	//BubbleSort(arr, 9);
+	InsertSort(arr, 9);
 	//QuickSort(arr, 0, 9);
-	MergeSort(arr, 0, 9);
+	//MergeSort(arr, 0, 9);
 	for (int i = 0; i < 10; i++) {
 		std::cout << arr[i] << std::endl;
+	}
+}
+
+void BubbleSort(int *arr, int size) {
+	for (int i = 0; i < size; i++) {
+		for (int j = 0; j < size - i; j++)
+			if (arr[j] > arr[j + 1])
+				Swap(arr[j], arr[j + 1]);
+	}
+}
+
+void InsertSort(int *arr, int size) {
+	for (int i = 1; i <= size; i++) {
+		int j;
+		int temp = arr[i];
+		for (j = i ; j > 0 && arr[j-1] >= temp; j--) {
+			arr[j] = arr[j - 1];
+		}
+		arr[j] = temp;
 	}
 }
 
 void QuickSort(int* arr, int left, int right) {
 	if (right - left < 1)
 		return;
+	int min = left;
 	int max = right;
 	int pivot = left;
+	int center = (right + left) / 2;
+	if (arr[left] > arr[center])
+		Swap(arr[left], arr[center]);
 	if (arr[left] > arr[right])
-		arr[(int)(right - left)/2] > arr[left] ? pivot = left: arr[(int)(right - left)/2] > arr[right] ? pivot = (int)(right - left)/2 : pivot = right;
-	else
-		arr[(int)(right - left)/2] > arr[right] ? pivot = right : arr[(int)(right - left)/2] > arr[left] ? pivot = (int)(right - left)/2 : pivot = left;
-	Swap(arr[right], arr[pivot]);
-	pivot = right;
-	right--;
+		Swap(arr[left], arr[right]);
+	if (arr[center] > arr[right])
+		Swap(arr[center], arr[right]);
+	Swap(arr[center], arr[max - 1]);
+	pivot = max - 1;
+	right -= 2;
 	while (left < right) {
 		while (arr[left] < arr[pivot] && left < right)
 			left++;
@@ -39,9 +66,13 @@ void QuickSort(int* arr, int left, int right) {
 			right--;
 		Swap(arr[left], arr[right]);
 	}
-	Swap(arr[left], arr[pivot]);
-	QuickSort(arr, 0, left - 1);
-	QuickSort(arr, left + 1, max);
+	if (arr[left] > arr[pivot])
+	{
+		Swap(arr[left], arr[pivot]);
+		pivot = left;
+	}
+	QuickSort(arr, min, pivot - 1);
+	QuickSort(arr, pivot + 1, max);
 }
 
 void MergeSort(int* arr, int left, int right) {
