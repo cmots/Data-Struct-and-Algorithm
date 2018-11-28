@@ -8,15 +8,17 @@
 
 void BubbleSort(int *, int size);
 void InsertSort(int*, int size);
+void SelectionSort(int*, int size);
 void QuickSort(int*, int left, int right);	//这里采用比较基本的方法，但是入口要一直传递大数组
 void MergeSort(int*, int left, int right);
 void Swap(int &, int &);
 
 int main()
 {
-	int arr[10] = { 3,1,6,4,5,9,5,10,7,2};
+	int arr[10] = { 3,1,6,4,5,9,5,10,7,2 };
 	//BubbleSort(arr, 9);
-	InsertSort(arr, 9);
+	//InsertSort(arr, 9);
+	//SelectionSort(arr, 9);
 	//QuickSort(arr, 0, 9);
 	//MergeSort(arr, 0, 9);
 	for (int i = 0; i < 10; i++) {
@@ -40,6 +42,19 @@ void InsertSort(int *arr, int size) {
 			arr[j] = arr[j - 1];
 		}
 		arr[j] = temp;
+	}
+}
+
+void SelectionSort(int *arr, int size) {
+	for (int i = 1; i < size; i++) {
+		if (arr[i] < arr[0])
+			Swap(arr[i], arr[0]);
+	}
+	for (int i = 1; i < size; i++) {
+		for (int j = i + 1; j <= size; j++) {
+			if (arr[j] < arr[i])
+				Swap(arr[i], arr[j]);
+		}
 	}
 }
 
